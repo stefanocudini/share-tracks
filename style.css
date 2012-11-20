@@ -1,0 +1,34 @@
+html, body {
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: 'Lucida Grande', Geneva, Arial, Verdana, sans-serif;
+}
+body {
+	margin: 4px;
+	background: #dea;
+	color: #562;
+}
+#map_wrap {
+}
+h1 {
+	font-size:1em;
+	margin:0;
+	padding:0;
+}
+#map {
+	border:1px solid #ab7;
+	height:500px;
+	width:900px;
+}
+#copy {
+	position:fixed;
+	top:0;
+	right:0;
+	color:#6a2;
+	margin:.25em;
+}
+#loader em {
+	text-align:center;
+	display:none;
+}
