@@ -4,14 +4,15 @@ $bdir = './traces/';
 
 $gpxfile = ( isset($_GET['gpx']) and 
              file_exists($bdir.basename($_GET['gpx'])) ) ? $bdir.basename($_GET['gpx']) : '';
-$tit = basename($gpxfile);
+
+
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-	<title>Archivio Gpx: <?=$tit?></title>
+	<title>Traccia Gpx: <?=basename($gpxfile)?></title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
 	<style type="text/css">
-		@import url('/maps/openlayers/theme/default/style.css');
 		@import url('style.css');
 	</style>
 </head>
@@ -22,10 +23,12 @@ $tit = basename($gpxfile);
 	<div id="map"></div>
 	<div id="coords"></div>
 </div>
-<div id="copy">powered by Stefano Cudini&nbsp;&nbsp;&nbsp;</div>	
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="/maps/openlayers/OpenLayers.js"></script>
-<script src="/jquery-1.4.2.min.js"></script>
+<div id="copy">powered by Stefano Cudini&nbsp;&nbsp;&nbsp;</div>
+<!--script src="/jquery-1.7.2.min.js"></script-->
+<script src="http://leaflet.cloudmade.com/dist/leaflet.js"></script>
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+<script src="/maps/leaflet-plugins/layer/tile/Google.js"></script>
+<script src="/maps/leaflet-plugins/layer/vector/GPX.js"></script>
 <script>
 var gpxfile = "<?=$gpxfile?>";
 </script>

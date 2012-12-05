@@ -8,26 +8,33 @@ body {
 	margin: 4px;
 	background: #dea;
 	color: #562;
-}
-#map_wrap {
+	overflow:hidden;
 }
 h1 {
 	font-size:1em;
 	margin:0;
 	padding:0;
 }
+
 #map {
-	border:1px solid #ab7;
-	height:500px;
-	width:900px;
+	position:absolute;
+	top:0;
+	left:0;
+	right:300px;
+	bottom:0;
+	height:auto;
+	width:auto;
 }
+
 #copy {
 	position:fixed;
-	top:0;
+	bottom:0;
 	right:0;
+	font-size:.85em;
 	color:#6a2;
 	margin:.25em;
 }
+
 #loader em {
 	text-align:center;
 	display:none;
