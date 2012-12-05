@@ -21,7 +21,9 @@ $gpxfile = ( isset($_GET['gpx']) and
 <h1>Archivio Gpx</h1>
 <div id="map_wrap">
 	<div id="map"></div>
-	<div id="coords"></div>
+	<div id="list">
+		<a href="<?=$gpxfile?>"><?=basename($gpxfile)?></a>
+	</div>
 </div>
 <div id="copy">powered by Stefano Cudini&nbsp;&nbsp;&nbsp;</div>
 <!--script src="/jquery-1.7.2.min.js"></script-->

@@ -25,7 +25,19 @@ h1 {
 	height:auto;
 	width:auto;
 }
-
+#list {
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	border-left:5px solid #bcb;
+	width:300px;
+}
+#list a {
+	display:blick;
+	clear: both;
+	padding:.5em;
+}
 #copy {
 	position:fixed;
 	bottom:0;
@@ -38,4 +50,8 @@ h1 {
 #loader em {
 	text-align:center;
 	display:none;
+}
+
+.leaflet-popup-content-wrapper {
+	border-radius:.5em;	
 }
