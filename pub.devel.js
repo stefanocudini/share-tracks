@@ -21,6 +21,8 @@ var gpxzoom = L.DomUtil.get('gpxzoom');
 L.DomEvent
 	.disableClickPropagation(gpxzoom)
 	.addListener(gpxzoom, 'click', function() {
-		zoomGpx( gpxLayer.layers[0] );
+
+		zoomGpx( gpxLayer );
+
 	},this);
 
