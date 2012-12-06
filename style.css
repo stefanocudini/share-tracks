@@ -5,7 +5,7 @@ html, body {
 	font-family: 'Lucida Grande', Geneva, Arial, Verdana, sans-serif;
 }
 body {
-	margin: 4px;
+	margin: 0;
 	background: #dea;
 	color: #562;
 	overflow:hidden;
@@ -15,36 +15,61 @@ h1 {
 	margin:0;
 	padding:0;
 }
-
+#list a {
+	line-height:24px;
+	margin-left:4px;
+}
+#list {
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	background: #dea;
+	height:28px;
+}
 #map {
 	position:absolute;
 	top:0;
 	left:0;
-	right:300px;
+	right:0;
 	bottom:0;
 	height:auto;
 	width:auto;
 }
-#list {
-	position:absolute;
-	top:0;
-	right:0;
-	bottom:0;
-	border-left:5px solid #bcb;
-	width:300px;
+a span {
+	display:none;
 }
-#list a {
-	display:blick;
-	clear: both;
-	padding:.5em;
+#gpxzoom,
+#gpxdown {
+	display:inline-block;
+	vertical-align:middle;
+	width:22px;
+	height:22px;
+	background: url('icons.png') no-repeat rgba(255, 255, 255, 0.5);
+	border:2px solid rgba(0, 0, 0, 0.5);	
+	-webkit-border-radius: 4px;
+	        border-radius: 4px;	
+	margin:2px;
 }
+#gpxzoom:hover,
+#gpxdown:hover {
+	background-color: rgba(255, 255, 255, 1);
+	border:2px solid #fff;	
+}
+#gpxzoom {
+	background-position:1px 1px;
+}
+#gpxdown {
+	background-position:-23px 1px;
+}
+
 #copy {
 	position:fixed;
 	bottom:0;
 	right:0;
-	font-size:.85em;
+	font-size:10px;
+	line-height:26px;
 	color:#6a2;
-	margin:.25em;
 }
 
 #loader em {
