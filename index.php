@@ -1,4 +1,4 @@
-<?
+<?php
 
 $bdir = './traces/';
 
@@ -9,7 +9,7 @@ $gpxfile = ( isset($_GET['gpx']) and
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-	<title>Traccia Gpx: <?=basename($gpxfile)?></title>
+	<title>Traccia Gpx: <?php echo basename($gpxfile); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
@@ -22,9 +22,11 @@ $gpxfile = ( isset($_GET['gpx']) and
 <div id="map_wrap">
 	<div id="map"></div>
 	<div id="list">
+	<?php if($gpxfile): ?>
 		<a href="<?=$gpxfile?>"><?=basename($gpxfile)?></a>
 		<a id="gpxzoom"><span>zoom</span></a>
 		<a id="gpxdown" href="<?=$gpxfile?>"><span>download</span></a>
+	<?php endif; ?>
 	</div>
 </div>
 <div id="copy">powered by Stefano Cudini&nbsp;&nbsp;&nbsp;</div>
