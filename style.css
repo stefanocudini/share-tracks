@@ -15,22 +15,22 @@ h1 {
 	margin:0;
 	padding:0;
 }
-#list a {
-	cursor:pointer;
-	line-height:24px;
-	margin-left:4px;
-}
 #list {
 	position:absolute;
 	left:0;
 	right:0;
-	bottom:0;
+	top:0;
 	background: #dea;
 	height:28px;
 }
+#list a {
+	cursor:pointer;
+	margin-left:4px;
+}
+
 #map {
 	position:absolute;
-	top:0;
+	top:30px;
 	left:0;
 	right:0;
 	bottom:0;

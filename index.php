@@ -5,7 +5,6 @@ $bdir = './traces/';
 $gpxfile = ( isset($_GET['gpx']) and 
              file_exists($bdir.basename($_GET['gpx'])) ) ? $bdir.basename($_GET['gpx']) : '';
 
-
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
@@ -19,15 +18,25 @@ $gpxfile = ( isset($_GET['gpx']) and
 </head>
 
 <body>
+<?
+if(!$gpxfile):
+	?><h3>Tracce gpx:</h3><?
+	$d = opendir($bdir);
+	while($f = readdir($d))
+	{
+		if($f{0}=='.' or strtolower(substr($f,-4))!='.gpx') continue;
+		?><a href="?gpx=<?=$f?>"><?=$f?></a><br /><?
+	}
+	closedir($d);
+else:	
+?>
 <div id="map_wrap">
-	<div id="map"></div>
 	<div id="list">
-	<?php if($gpxfile): ?>
 		<a href="<?=$gpxfile?>"><?=basename($gpxfile)?></a>
 		<a id="gpxzoom"><span>zoom</span></a>
 		<a id="gpxdown" href="<?=$gpxfile?>"><span>download</span></a>
-	<?php endif; ?>
 	</div>
+	<div id="map"></div>	
 </div>
 <div id="copy">powered by Stefano Cudini&nbsp;&nbsp;&nbsp;</div>
 <!--script src="/jquery-1.7.2.min.js"></script-->
@@ -39,6 +48,9 @@ $gpxfile = ( isset($_GET['gpx']) and
 var gpxfile = "<?=$gpxfile?>";
 </script>
 <script src="pub.devel.js"></script>
+<?
+endif;
+?>
 
 </body>
 </html>
