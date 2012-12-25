@@ -27,7 +27,12 @@ h1 {
 	cursor:pointer;
 	margin-left:4px;
 }
-
+#tracklist {
+	padding:10px;
+}
+#tracklist a {
+	margin-bottom:4px;
+}
 #map {
 	position:absolute;
 	top:30px;

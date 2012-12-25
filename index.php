@@ -20,7 +20,9 @@ $gpxfile = ( isset($_GET['gpx']) and
 <body>
 <?
 if(!$gpxfile):
-	?><h3>Tracce gpx:</h3><?
+	?>
+	<div id="tracklist">
+	<h3>Tracce gpx:</h3><?
 	$d = opendir($bdir);
 	while($f = readdir($d))
 	{
@@ -28,8 +30,9 @@ if(!$gpxfile):
 		?><a href="?gpx=<?=$f?>"><?=$f?></a><br /><?
 	}
 	closedir($d);
+	?></div><?
 else:	
-?>
+?>	
 <div id="map_wrap">
 	<div id="list">
 		<a href="<?=$gpxfile?>"><?=basename($gpxfile)?></a>
