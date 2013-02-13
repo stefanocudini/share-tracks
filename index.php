@@ -2,8 +2,9 @@
 
 $bdir = './traces/';
 
-$gpxfile = ( isset($_GET['gpx']) and 
-             file_exists($bdir.basename($_GET['gpx'])) ) ? $bdir.basename($_GET['gpx']) : '';
+$gpxfile = '';
+if( trim($_SERVER['QUERY_STRING']) and file_exists($bdir.basename($_SERVER['QUERY_STRING'])) )
+	$gpxfile = $bdir.basename($_SERVER['QUERY_STRING']);
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -27,7 +28,7 @@ if(!$gpxfile):
 	while($f = readdir($d))
 	{
 		if($f{0}=='.' or strtolower(substr($f,-4))!='.gpx') continue;
-		?><a href="?gpx=<?=$f?>"><?=$f?></a><br /><?
+		?><a href="?<?=$f?>"><?=$f?></a><br /><?
 	}
 	closedir($d);
 	?></div><?
