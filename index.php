@@ -55,7 +55,7 @@ var gpxfile = "<?=$gpxfile?>";
 <?
 endif;
 ?>
-<script type="text/javascript" src="/labs.analytics.js"></script>
+<script type="text/javascript" src="/labs-common.js"></script>
 </body>
 </html>
 
