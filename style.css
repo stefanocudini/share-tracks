@@ -71,11 +71,16 @@ a span {
 
 #copy {
 	position:fixed;
-	bottom:0;
-	right:0;
-	font-size:10px;
-	line-height:26px;
-	color:#6a2;
+	z-index:1000;
+	right:-6px;
+	top:-6px;
+	font-style:italic;
+	font-size:.85em;
+	padding:5px 8px;
+	background: #fff;
+	border:2px solid #c5cdd4;
+	border-radius:.7em;
+	opacity: 0.8;
 }
 
 #loader em {

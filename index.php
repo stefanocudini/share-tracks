@@ -42,7 +42,6 @@ else:
 	</div>
 	<div id="map"></div>	
 </div>
-<div id="copy">powered by Stefano Cudini&nbsp;&nbsp;&nbsp;</div>
 <!--script src="/js/jquery-1.7.2.min.js"></script-->
 <script src="http://leaflet.cloudmade.com/dist/leaflet.js"></script>
 <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
@@ -55,6 +54,8 @@ var gpxfile = "<?=$gpxfile?>";
 <?
 endif;
 ?>
+<div id="copy"><a href="http://labs.easyblog.it/">Labs</a> &bull; <a href="http://labs.easyblog.it/stefano-cudini/">Stefano Cudini</a></div>
+	
 <script type="text/javascript" src="/labs-common.js"></script>
 </body>
 </html>
