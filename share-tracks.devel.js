@@ -27,7 +27,6 @@ gpxLayer
 		zoomGpx(e.target);
 	})
 	.on("addline",function(e){
-		 console.log(e);
 		eleLayer.addData(e.line);
 	});
 
