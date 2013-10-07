@@ -3,14 +3,14 @@ var map = new L.Map('map', {attributionControl: false});
 	//osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
   	//gpxLayer = new L.LayerGroup(),
 var track;
- 
+
 map.addLayer(new L.Google());
 
 function zoomGpx(gpxline) {
 	map.fitBounds(gpxline.getBounds());	//zoom estensioni del gpx
 }
 
-var eleLayer = L.control.elevation();
+var eleLayer = L.control.elevation({position:'bottomright'});
 eleLayer.addTo(map);
 
 var gpxLayer = new L.GPX(gpxfile, {
