@@ -13,9 +13,8 @@ if( trim($_SERVER['QUERY_STRING']) and file_exists($bdir.basename($_SERVER['QUER
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
-	<style type="text/css">
-		@import url('style.css');
-	</style>
+	<link rel="stylesheet" href="leaflet-elevation/dist/Leaflet.Elevation-0.0.1.css" />
+	<link rel="stylesheet" href="share-tracks.css" />
 </head>
 
 <body>
@@ -23,7 +22,7 @@ if( trim($_SERVER['QUERY_STRING']) and file_exists($bdir.basename($_SERVER['QUER
 if(!$gpxfile):
 	?>
 	<div id="tracklist">
-	<h3>Tracce gpx:</h3><?
+	<h3>Tracce gpx: </h3><?
 	$d = opendir($bdir);
 	while($f = readdir($d))
 	{
@@ -42,15 +41,15 @@ else:
 	</div>
 	<div id="map"></div>	
 </div>
-<!--script src="/js/jquery-1.7.2.min.js"></script-->
 <script src="http://leaflet.cloudmade.com/dist/leaflet.js"></script>
 <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-<script src="/maps/leaflet-plugins/layer/tile/Google.js"></script>
-<script src="/maps/leaflet-plugins/layer/vector/GPX.js"></script>
+<script src="leaflet-plugins/layer/tile/Google.js"></script>
+<script src="leaflet-plugins/layer/vector/GPX.js"></script>
+<script src="leaflet-elevation/dist/Leaflet.Elevation-0.0.1.min.js"></script>
 <script>
 var gpxfile = "<?=$gpxfile?>";
 </script>
-<script src="pub.devel.js"></script>
+<script src="share-tracks.devel.js"></script>
 <?
 endif;
 ?>
