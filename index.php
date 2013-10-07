@@ -45,6 +45,7 @@ else:
 <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
 <script src="leaflet-plugins/layer/tile/Google.js"></script>
 <script src="leaflet-plugins/layer/vector/GPX.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="leaflet-elevation/dist/Leaflet.Elevation-0.0.1.min.js"></script>
 <script>
 var gpxfile = "<?=$gpxfile?>";
