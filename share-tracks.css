@@ -11,7 +11,9 @@ body {
 	overflow:hidden;
 }
 h1 {
-	font-size:1em;
+	display: inline-block;
+	font-size:.85em;
+	line-height: 1em;
 	margin:0;
 	padding:0;
 }
@@ -52,9 +54,8 @@ a span {
 	width:22px;
 	height:22px;
 	background: url('icons.png') no-repeat rgba(255, 255, 255, 0.5);
-	border:2px solid rgba(0, 0, 0, 0.5);	
-	-webkit-border-radius: 4px;
-	        border-radius: 4px;	
+	border:2px solid rgba(0, 0, 0, 0.5);
+	border-radius: 4px;	
 	margin:2px;
 }
 #gpxzoom:hover,
@@ -67,6 +68,11 @@ a span {
 }
 #gpxdown {
 	background-position:-23px 1px;
+}
+#textshare {
+	background: rgba(255, 255, 255, 0.5);	
+	border:2px solid rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
 }
 
 #copy {
@@ -90,4 +96,14 @@ a span {
 
 .leaflet-popup-content-wrapper {
 	border-radius:.5em;	
+}
+.leaflet-control-permalink {
+	border-radius: 6px;
+}
+.leaflet-container .leaflet-control-attribution {
+	margin: 10px;
+}
+.leaflet-control-permalink a {
+	font-size: 2em;
+	letter-spacing: 2px;
 }
