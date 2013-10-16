@@ -1,5 +1,5 @@
 
-var map = new L.Map('map', {attributionControl: false});
+var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false});
 	//osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
   	//gpxLayer = new L.LayerGroup(),
 	//var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
@@ -11,10 +11,6 @@ var osmLayer = new L.TileLayer('http://localhost/maps/osm-tile-cacher/tmsfake.ph
 	gooSatLayer = new L.Google();
 
 map.addLayer(gooSatLayer);
-
-function zoomGpx(gpxline) {
-	map.fitBounds(gpxline.getBounds());	//zoom estensioni del gpx
-}
 
 var eleLayer = L.control.elevation({position:'bottomright'});
 eleLayer.addTo(map);
@@ -36,13 +32,28 @@ var controlLayers = new L.Control.Layers({
 	"Terrain": demLayer,
 	"Print": bwLayer	
 },{"GPX track": gpxLayer},{position:'topright'});
+map.addControl(controlLayers);
 
 var controlPermalink = new L.Control.Permalink({text: 'Permalink', layers: controlLayers});
-var textPermalink = L.DomUtil.get('textshare');
+map.addControl(controlPermalink);
 
+controlPermalink.on('update',function(e) {
+	permalinkLoaded = true;
+	textPermalink.value = controlPermalink._href.href;
+});
+
+var textPermalink = L.DomUtil.get('textshare');
 L.DomEvent.addListener(textPermalink, 'click', textPermalink.select );
 
-map.addControl(controlLayers);
+function zoomGpx(gpxline) {
+	var bb = gpxline.getBounds();
+	//controlPermalink._update({zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng});
+	controlPermalink._set_center({params: {zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng}});
+}
+
+map.on('moveend', function(e) {
+	textPermalink.value = controlPermalink._href.href;
+});
 
 var gpxzoom = L.DomUtil.get('gpxzoom');
 L.DomEvent
@@ -52,18 +63,13 @@ L.DomEvent
 	},this);
 
 gpxLayer
-	.on("loaded", function(e) {
+.on("loaded", function(e) {
+	if( L.UrlUtil.hash() == '')
 		zoomGpx(e.target);
-
-		map.addControl(controlPermalink);
-		textPermalink.value = controlPermalink._href.href;
-		map.on('moveend', function(e) {
-			textPermalink.value = controlPermalink._href.href;
-		});
-	})
-	.on("addline",function(e){
-		eleLayer.addData(e.line);
-	});
+})
+.on("addline",function(e){
+	eleLayer.addData(e.line);
+});
 
 map.addLayer(gpxLayer);
 
