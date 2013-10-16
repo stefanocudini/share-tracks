@@ -16,11 +16,8 @@ else
 	L.DomUtil.get('gpxdown').href = gpxfile;
 }
 
-var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false});
-	//osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
-  	//gpxLayer = new L.LayerGroup(),
-	//var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-var osmLayer = new L.TileLayer('http://localhost/maps/osm-tile-cacher/tmsfake.php?{z}/{x}/{y}.png'),
+var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
+	osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
 	cycleLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'),
 	demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
 	bwLayer = new L.TileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
