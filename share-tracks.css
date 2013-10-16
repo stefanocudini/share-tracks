@@ -98,6 +98,7 @@ a span {
 	border-radius:.5em;	
 }
 .leaflet-control-permalink {
+	display: none;
 	border-radius: 6px;
 }
 .leaflet-container .leaflet-control-attribution {

@@ -1,6 +1,6 @@
 <?php
 
-$bdir = './traces/';
+$bdir = './gpxs/';
 
 $gpxfile = '';
 if( trim($_SERVER['QUERY_STRING']) and file_exists($bdir.basename($_SERVER['QUERY_STRING'])) )
@@ -40,7 +40,7 @@ else:
 		<a href="<?=$gpxfile?>"><?=basename($gpxfile)?></a>
 		<a id="gpxzoom"><span>zoom</span></a>
 		<a id="gpxdown" href="<?=$gpxfile?>"><span>download</span></a>
-		<label>share: <input type="text" id="textshare" value="" size="32" style="width:50%" /></label>
+		<label>permalink: <input type="text" id="textshare" value="" size="32" style="width:50%" /></label>
 	</div>
 	<div id="map"></div>	
 </div>

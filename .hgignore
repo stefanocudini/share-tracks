@@ -1,6 +1,6 @@
 syntax: glob
 *~
-traces
+gpxs/*
 leaflet-gpx/*
 leaflet-plugins/*
 leaflet-elevation/*
