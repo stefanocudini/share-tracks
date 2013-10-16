@@ -1,3 +1,20 @@
+(function() {
+
+var gpxfile = L.UrlUtil.query();//defined in leaflet-plugins/control/Permalink.js
+
+if(gpxfile=='')
+{
+	L.DomUtil.get('map_wrap').style.display = 'none';
+	L.DomUtil.get('tracklist').style.display = 'block';
+	return false;
+}
+else
+{
+	L.DomUtil.get('map_wrap').style.display = 'block';
+	L.DomUtil.get('tracklist').style.display = 'none';
+	L.DomUtil.get('gpxname').innerHTML = gpxfile.replace( /.*\//, "" ).replace( /.*\\/, "" );//basename
+	L.DomUtil.get('gpxdown').href = gpxfile;
+}
 
 var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false});
 	//osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
@@ -73,3 +90,4 @@ gpxLayer
 
 map.addLayer(gpxLayer);
 
+})();

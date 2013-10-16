@@ -73,6 +73,7 @@ a span {
 	background: rgba(255, 255, 255, 0.5);	
 	border:2px solid rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
+	width:40%;
 }
 
 #copy {
