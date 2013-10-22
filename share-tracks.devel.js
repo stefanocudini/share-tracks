@@ -41,8 +41,8 @@ var gpxLayer = new L.GPX(gpxfile, {
 var controlLayers = new L.Control.Layers({
 	"Satellite": gooSatLayer,
 	"OSM": osmLayer,
-	"OSM Paths": cycleLayer,
-	"OSM Gray": grayLayer,	
+	"OSM_paths": cycleLayer,
+	"OSM_gray": grayLayer,	
 	"Terrain": demLayer,
 	"Print": bwLayer	
 },{"GPX track": gpxLayer},{position:'topright'});
