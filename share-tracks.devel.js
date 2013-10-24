@@ -26,7 +26,11 @@ var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
 
 map.addLayer(gooSatLayer);
 
-var eleLayer = L.control.elevation({position:'bottomright'});
+var eleLayer = L.control.elevation({
+	width: 400,
+	height: 150,
+	position:'bottomright'
+});
 eleLayer.addTo(map);
 
 var gpxLayer = new L.GPX(gpxfile, {

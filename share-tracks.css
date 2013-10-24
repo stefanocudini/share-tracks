@@ -109,3 +109,7 @@ a span {
 	font-size: 2em;
 	letter-spacing: 2px;
 }
+
+.leaflet-control.elevation {
+	opacity: 0.8;
+}
