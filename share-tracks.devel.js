@@ -29,7 +29,8 @@ map.addLayer(gooSatLayer);
 var eleLayer = L.control.elevation({
 	width: 400,
 	height: 150,
-	position:'bottomright'
+	position:'bottomright',
+	collapsed:true
 });
 eleLayer.addTo(map);
 
