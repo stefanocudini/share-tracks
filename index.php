@@ -11,26 +11,25 @@
 
 <body>
 <div id="map_wrap" style="display:none">
-	<div id="list">
-		<h1><a href="./">SHARE GPX TRACKS</a></h1>
-		<b id="gpxname"></b>
-		<a id="gpxzoom"><span>zoom</span></a>
-		<a id="gpxdown" href=""><span>download</span></a>
-		<label>permalink: <input type="text" id="textshare" value="" size="32" /></label>
-	</div>
 	<div id="map"></div>	
 </div>
 <div id="tracklist">
 	<h1>SHARE GPX TRACKS</h1><br /><br />
+	<div style="display:inline-block">
+		<iframe src="http://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
+	</div>	
+	<hr />	
 	<?php
+
 	foreach(glob('./gpxs/*.gpx') as $f)
 		echo '<a href="?'.$f.'">'.basename($f).'</a><br />'."\n";
+
 	?>
+<div id="copy">
+	<a href="http://labs.easyblog.it/">Labs</a> &bull; <a href="http://labs.easyblog.it/stefano-cudini/">Stefano Cudini</a>
 </div>
-<div style="position:absolute;top:4px;right:130px">
-	<iframe src="http://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
+<a href="https://github.com/stefanocudini/share-tracks"><img id="ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 </div>
-<div id="copy"><a href="http://labs.easyblog.it/">Labs</a> &bull; <a href="http://labs.easyblog.it/stefano-cudini/">Stefano Cudini</a></div>
 <script src="http://leaflet.cloudmade.com/dist/leaflet.js"></script>
 <script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"></script>
 <script src="leaflet-plugins/layer/tile/Google.js"></script>

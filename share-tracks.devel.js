@@ -12,8 +12,6 @@ else
 {
 	L.DomUtil.get('map_wrap').style.display = 'block';
 	L.DomUtil.get('tracklist').style.display = 'none';
-	L.DomUtil.get('gpxname').innerHTML = gpxfile.replace( /.*\//, "" ).replace( /.*\\/, "" );//basename
-	L.DomUtil.get('gpxdown').href = gpxfile;
 }
 
 var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
@@ -24,13 +22,13 @@ var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
 	grayLayer = new L.TileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
 	gooSatLayer = new L.Google();
 
-map.addLayer(gooSatLayer);
+map.addLayer(osmLayer);
 
 var eleLayer = L.control.elevation({
-	width: 400,
+	width: 320,
 	height: 150,
-	position:'bottomright',
-	collapsed:true
+	position: 'bottomright',
+	collapsed: true
 });
 eleLayer.addTo(map);
 
@@ -43,6 +41,12 @@ var gpxLayer = new L.GPX(gpxfile, {
 		}
 	});
 
+function zoomGpx(gpxline) {
+	var bb = gpxline.getBounds();
+	//controlPermalink._update({zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng});
+	controlPermalink._set_center({params: {zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng}});
+}
+
 var controlLayers = new L.Control.Layers({
 	"Satellite": gooSatLayer,
 	"OSM": osmLayer,
@@ -51,35 +55,83 @@ var controlLayers = new L.Control.Layers({
 	"Terrain": demLayer,
 	"Print": bwLayer	
 },{"GPX track": gpxLayer},{position:'topright'});
+
+var controlFitZoom = (function() {
+		var control = new L.Control({position:'topleft'});
+		control.onAdd = function(map) {
+					var azoom = L.DomUtil.create('a','gpxzoom');
+					azoom.title = "Zoom to track";
+					L.DomEvent
+						.disableClickPropagation(azoom)
+						.addListener(azoom, 'click', function() {
+							zoomGpx( gpxLayer );
+						},azoom);
+					return azoom;
+				};
+		return control;
+	}());
+
+var controlDownload = (function() {
+		var control = new L.Control({position:'topleft'});
+		control.onAdd = function(map) {
+					var adown = L.DomUtil.create('a','gpxdown');
+					adown.href = gpxfile;
+					adown.title = "Download GPX file";
+					return adown;
+				};
+		return control;
+	}());
+
 map.addControl(controlLayers);
 
 var controlPermalink = new L.Control.Permalink({text: 'Permalink', layers: controlLayers});
 map.addControl(controlPermalink);
 
-controlPermalink.on('update',function(e) {
-	permalinkLoaded = true;
-	textPermalink.value = controlPermalink._href.href;
-});
+window.controlPermalink = controlPermalink;
+controlPermalink._href.innerHTML = '';
 
-var textPermalink = L.DomUtil.get('textshare');
-L.DomEvent.addListener(textPermalink, 'click', textPermalink.select );
 
-function zoomGpx(gpxline) {
-	var bb = gpxline.getBounds();
-	//controlPermalink._update({zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng});
-	controlPermalink._set_center({params: {zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng}});
+function selectInput() {
+	var start = 0,
+		end = this.value.length;
+	if (this.createTextRange) {
+		var selRange = this.createTextRange();
+		selRange.collapse(true);
+		selRange.moveStart('character', start);
+		selRange.moveEnd('character', end);
+		selRange.select();
+	}
+	else if(this.setSelectionRange) {
+		this.setSelectionRange(start, end);
+	}
+	else if(this.selectionStart) {
+		this.selectionStart = start;
+		this.selectionEnd = end;
+	}	
 }
-
-map.on('moveend', function(e) {
+var textPermalink = L.DomUtil.create('input', 'textshare', controlPermalink._container );
+textPermalink.type = 'text';
+textPermalink.size = '32';
+textPermalink.value = '';
+L.DomEvent.addListener(textPermalink, 'click', selectInput, textPermalink);
+L.DomEvent
+	.disableClickPropagation(controlPermalink._container)
+	.addListener(controlPermalink._container, 'click', function() {
+		textPermalink.style.display = 'block';
+	});
+controlPermalink.on('update', function(e) {
 	textPermalink.value = controlPermalink._href.href;
 });
+map
+.on('moveend', function(e) {
+	textPermalink.value = controlPermalink._href.href;
+})
+.on('click', function(e) {
+	textPermalink.style.display = 'none';
+});
 
-var gpxzoom = L.DomUtil.get('gpxzoom');
-L.DomEvent
-	.disableClickPropagation(gpxzoom)
-	.addListener(gpxzoom, 'click', function() {
-		zoomGpx( gpxLayer );
-	},this);
+map.addControl(controlFitZoom);
+map.addControl(controlDownload);
 
 gpxLayer
 .on("loaded", function(e) {
