@@ -49,7 +49,7 @@ a span {
 	color: #1978cf;
 	border-radius: 4px;
 	z-index:1000;
-	box-shadow: 0 1px 7px rgba(0,0,0,0.65);
+	box-shadow: 0 1px 7px rgba(0,0,0,0.5);
 	margin-left: 10px;
 	margin-top: 10px;
 }
@@ -67,9 +67,8 @@ a span {
 .leaflet-control-permalink {
 	background-position: -46px 3px;
 }
-.textshare {
-	background: rgba(255, 255, 255, 0.5);	
-	border: 1px solid rgba(0, 0, 0, 0.5);
+.textshare {	
+	border: 1px solid #bbb;
 	border-radius: 4px;
 	width:40%;
 }
