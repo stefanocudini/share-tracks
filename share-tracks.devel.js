@@ -14,6 +14,25 @@ else
 	L.DomUtil.get('tracklist').style.display = 'none';
 }
 
+L.DomUtil.selectText = function() {
+	var start = 0,
+		end = this.value.length;
+	if (this.createTextRange) {
+		var selRange = this.createTextRange();
+		selRange.collapse(true);
+		selRange.moveStart('character', start);
+		selRange.moveEnd('character', end);
+		selRange.select();
+	}
+	else if(this.setSelectionRange) {
+		this.setSelectionRange(start, end);
+	}
+	else if(this.selectionStart) {
+		this.selectionStart = start;
+		this.selectionEnd = end;
+	}
+};
+
 var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
 	osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
 	cycleLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'),
@@ -68,12 +87,12 @@ var controlFitZoom = (function() {
 var controlDownload = (function() {
 		var control = new L.Control({position:'topleft'});
 		control.onAdd = function(map) {
-					var adown = L.DomUtil.create('a','gpxdown');
-					adown.href = gpxfile;
-					adown.target = '_blank';
-					adown.title = "Download track file";
-					return adown;
-				};
+				var adown = L.DomUtil.create('a','gpxdown');
+				adown.href = gpxfile;
+				adown.target = '_blank';
+				adown.title = "Download track file";
+				return adown;
+			};
 		return control;
 	}());
 
@@ -95,24 +114,7 @@ controlPermalink._text.type = 'text';
 controlPermalink._text.size = '32';
 controlPermalink._text.value = controlPermalink._href.href;
 
-L.DomEvent.addListener(controlPermalink._text, 'click', function() {
-	var start = 0,
-		end = this.value.length;
-	if (this.createTextRange) {
-		var selRange = this.createTextRange();
-		selRange.collapse(true);
-		selRange.moveStart('character', start);
-		selRange.moveEnd('character', end);
-		selRange.select();
-	}
-	else if(this.setSelectionRange) {
-		this.setSelectionRange(start, end);
-	}
-	else if(this.selectionStart) {
-		this.selectionStart = start;
-		this.selectionEnd = end;
-	}
-});
+L.DomEvent.addListener(controlPermalink._text, 'click', L.DomUtil.selectText);
 
 L.DomEvent
 	.disableClickPropagation(controlPermalink._container)
@@ -123,7 +125,6 @@ L.DomEvent
 controlPermalink.on('update', function(e) {
 	controlPermalink._text.value = controlPermalink._href.href;
 });
-
 
 map.on('moveend', function(e) {
 		controlPermalink._text.value = controlPermalink._href.href;
