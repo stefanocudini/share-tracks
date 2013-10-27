@@ -82,16 +82,34 @@ var controlDownload = (function() {
 		return control;
 	}());
 
+map.addControl(controlFitZoom);
+map.addControl(controlDownload);
 map.addControl(controlLayers);
 
 var controlPermalink = new L.Control.Permalink({text: 'Permalink', layers: controlLayers});
 map.addControl(controlPermalink);
 
-window.controlPermalink = controlPermalink;
+//TODO replace L.Control.Permalink with L.Hash: https://github.com/mlevans/leaflet-hash
+
 controlPermalink._href.innerHTML = '';
 
+var textPermalink = L.DomUtil.create('input', 'textshare', controlPermalink._container );
+textPermalink.type = 'text';
+textPermalink.size = '32';
+textPermalink.value = '';
 
-function selectInput() {
+L.DomEvent
+	.disableClickPropagation(controlPermalink._container)
+	.addListener(controlPermalink._container, 'click', function() {
+		textPermalink.style.display = 'block';
+	});
+
+controlPermalink.on('update', function(e) {
+	textPermalink.value = controlPermalink._href.href;
+});
+
+L.DomEvent
+	.addListener(textPermalink, 'click', function() {
 	var start = 0,
 		end = this.value.length;
 	if (this.createTextRange) {
@@ -107,21 +125,9 @@ function selectInput() {
 	else if(this.selectionStart) {
 		this.selectionStart = start;
 		this.selectionEnd = end;
-	}	
-}
-var textPermalink = L.DomUtil.create('input', 'textshare', controlPermalink._container );
-textPermalink.type = 'text';
-textPermalink.size = '32';
-textPermalink.value = '';
-L.DomEvent.addListener(textPermalink, 'click', selectInput, textPermalink);
-L.DomEvent
-	.disableClickPropagation(controlPermalink._container)
-	.addListener(controlPermalink._container, 'click', function() {
-		textPermalink.style.display = 'block';
-	});
-controlPermalink.on('update', function(e) {
-	textPermalink.value = controlPermalink._href.href;
+	}
 });
+
 map
 .on('moveend', function(e) {
 	textPermalink.value = controlPermalink._href.href;
@@ -129,9 +135,6 @@ map
 .on('click', function(e) {
 	textPermalink.style.display = 'none';
 });
-
-map.addControl(controlFitZoom);
-map.addControl(controlDownload);
 
 gpxLayer
 .on("loaded", function(e) {
