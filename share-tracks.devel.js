@@ -70,6 +70,7 @@ var controlDownload = (function() {
 		control.onAdd = function(map) {
 					var adown = L.DomUtil.create('a','gpxdown');
 					adown.href = gpxfile;
+					adown.target = '_blank';
 					adown.title = "Download track file";
 					return adown;
 				};
