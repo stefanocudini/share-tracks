@@ -20,54 +20,48 @@ var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
 	demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
 	bwLayer = new L.TileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
 	grayLayer = new L.TileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
-	gooSatLayer = new L.Google();
-
-map.addLayer(osmLayer);
-
-var eleLayer = L.control.elevation({
-	width: 320,
-	height: 150,
-	position: 'bottomright',
-	collapsed: true
-});
-eleLayer.addTo(map);
-
-var gpxLayer = new L.GPX(gpxfile, {
+	satLayer = new L.Google(),
+	gpxLayer = new L.GPX(gpxfile, {
 		async: true,
 		marker_options: {
 			startIconUrl: 'leaflet-gpx/pin-icon-start.png',
 			endIconUrl: 'leaflet-gpx/pin-icon-end.png',
 			shadowUrl: 'leaflet-gpx/pin-shadow.png'
 		}
-	});
+	}),
+	baseLayers = {
+		"OSM": osmLayer,
+		"Paths": cycleLayer,
+		"Gray": grayLayer,
+		"Satellite": satLayer,		
+		"Terrain": demLayer,
+		"Print": bwLayer	
+	},
+	overLayers = {
+		"Track": gpxLayer
+	};
 
-function zoomGpx(gpxline) {
-	var bb = gpxline.getBounds();
-	//controlPermalink._update({zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng});
-	controlPermalink._set_center({params: {zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng}});
-}
+var controlLayers = new L.Control.Layers(baseLayers, overLayers, {position:'topright'});
 
-var controlLayers = new L.Control.Layers({
-	"Satellite": gooSatLayer,
-	"OSM": osmLayer,
-	"OSM_paths": cycleLayer,
-	"OSM_gray": grayLayer,	
-	"Terrain": demLayer,
-	"Print": bwLayer	
-},{"GPX track": gpxLayer},{position:'topright'});
+var controlPermalink = new L.Control.Permalink({text: 'Permalink', layers: controlLayers});
 
 var controlFitZoom = (function() {
 		var control = new L.Control({position:'topleft'});
+		control._zoomGpx = function(gpxline) {
+				var bb = gpxline.getBounds();
+				//controlPermalink._update({zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng});
+				controlPermalink._set_center({params: {zoom: map.getBoundsZoom(bb), lat: bb.getCenter().lat, lon: bb.getCenter().lng}});
+			};
 		control.onAdd = function(map) {
-					var azoom = L.DomUtil.create('a','gpxzoom');
-					azoom.title = "Zoom to track";
-					L.DomEvent
-						.disableClickPropagation(azoom)
-						.addListener(azoom, 'click', function() {
-							zoomGpx( gpxLayer );
-						},azoom);
-					return azoom;
-				};
+				var azoom = L.DomUtil.create('a','gpxzoom');
+				azoom.title = "Zoom to track";
+				L.DomEvent
+					.disableClickPropagation(azoom)
+					.addListener(azoom, 'click', function() {
+						control._zoomGpx( gpxLayer );
+					},azoom);
+				return azoom;
+			};
 		return control;
 	}());
 
@@ -82,34 +76,25 @@ var controlDownload = (function() {
 		return control;
 	}());
 
+var controlElevation = new L.Control.Elevation({
+	width: 320,
+	height: 150,
+	position: 'bottomright',
+	collapsed: true
+});
+
 map.addControl(controlFitZoom);
 map.addControl(controlDownload);
 map.addControl(controlLayers);
-
-var controlPermalink = new L.Control.Permalink({text: 'Permalink', layers: controlLayers});
 map.addControl(controlPermalink);
+map.addControl(controlElevation);
 
-//TODO replace L.Control.Permalink with L.Hash: https://github.com/mlevans/leaflet-hash
+controlPermalink._text = L.DomUtil.create('input', 'textshare', controlPermalink._container );
+controlPermalink._text.type = 'text';
+controlPermalink._text.size = '32';
+controlPermalink._text.value = controlPermalink._href.href;
 
-controlPermalink._href.innerHTML = '';
-
-var textPermalink = L.DomUtil.create('input', 'textshare', controlPermalink._container );
-textPermalink.type = 'text';
-textPermalink.size = '32';
-textPermalink.value = '';
-
-L.DomEvent
-	.disableClickPropagation(controlPermalink._container)
-	.addListener(controlPermalink._container, 'click', function() {
-		textPermalink.style.display = 'block';
-	});
-
-controlPermalink.on('update', function(e) {
-	textPermalink.value = controlPermalink._href.href;
-});
-
-L.DomEvent
-	.addListener(textPermalink, 'click', function() {
+L.DomEvent.addListener(controlPermalink._text, 'click', function() {
 	var start = 0,
 		end = this.value.length;
 	if (this.createTextRange) {
@@ -128,23 +113,34 @@ L.DomEvent
 	}
 });
 
-map
-.on('moveend', function(e) {
-	textPermalink.value = controlPermalink._href.href;
-})
-.on('click', function(e) {
-	textPermalink.style.display = 'none';
+L.DomEvent
+	.disableClickPropagation(controlPermalink._container)
+	.addListener(controlPermalink._container, 'click', function() {
+		controlPermalink._text.style.display = 'block';
+	});
+
+controlPermalink.on('update', function(e) {
+	controlPermalink._text.value = controlPermalink._href.href;
 });
+
+
+map.on('moveend', function(e) {
+		controlPermalink._text.value = controlPermalink._href.href;
+	})
+	.on('click', function(e) {
+		controlPermalink._text.style.display = 'none';
+	});
 
 gpxLayer
-.on("loaded", function(e) {
-	if( L.UrlUtil.hash() == '')
-		zoomGpx(e.target);
-})
-.on("addline",function(e){
-	eleLayer.addData(e.line);
-});
+	.on("loaded", function(e) {
+		if( L.UrlUtil.hash() == '')
+			controlFitZoom._zoomGpx(e.target);
+	})
+	.on("addline",function(e) {
+		controlElevation.addData(e.line);
+	});
 
+map.addLayer(osmLayer);
 map.addLayer(gpxLayer);
 
 })();
