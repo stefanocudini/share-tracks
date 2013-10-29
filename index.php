@@ -19,7 +19,7 @@
 		<iframe src="http://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
 	</div>
 	<hr />
-	<a href="embed.php">Embeddable maps</a>
+	<a href="embed.php">Maps Embedder</a>
 	<hr />
 	<?php
 
