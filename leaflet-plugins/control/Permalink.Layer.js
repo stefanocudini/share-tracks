@@ -34,6 +34,7 @@ L.Control.Permalink.include({
 		var p = e.params;
 		if (!this.options.layers || !p.layer) return;
 		this.options.layers.chooseBaseLayer(p.layer);
+		console.log(p);
 	}
 });
 

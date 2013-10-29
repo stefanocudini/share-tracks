@@ -17,8 +17,10 @@
 	<h1>SHARE GPX TRACKS</h1><br /><br />
 	<div style="display:inline-block">
 		<iframe src="http://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
-	</div>	
-	<hr />	
+	</div>
+	<hr />
+	<a href="embed.php">Embeddable maps</a>
+	<hr />
 	<?php
 
 	foreach(glob('./gpxs/*.gpx') as $f)

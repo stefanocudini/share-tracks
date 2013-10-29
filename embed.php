@@ -3,6 +3,7 @@
 <head> 
 <title></title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<link rel="stylesheet" href="share-tracks.css" />
 <style>
 /*	@import url('style.css'); */
 textarea {
@@ -13,16 +14,20 @@ iframe {
 	float: left;
 	margin: 1em;
 }
-#sizes label {
+#sizes label,
+#tiles label {
 	display: inline-block;
 	vertical-align: bottom;
 	padding: 2px;
+	margin: 2px;
 	color: #fff;
-	border: 2px solid #fff;
-	background: #ccc;
+	border: 3px solid #fff;
+	background: #cdb;
+	cursor: pointer;
 }
-#sizes input { visibility: hidden;}
-#sizes label.selected-size {
+#sizes input,
+#tiles input { visibility: hidden;margin-left: -18px}
+#sizes label.selected {
 	border-color: #d00;
 	color: #d00;
 }
@@ -35,7 +40,7 @@ iframe {
 
 <body>
 <div id="content">
-	<label>Track file: </label>
+	<label>Track: </label>
 	<select id="gpxfile">
 	<?
 		foreach(glob('./gpxs/*.gpx') as $f)
@@ -44,29 +49,49 @@ iframe {
 	</select>
 	<br /><br />
 	<div id="sizes">
-		<label class="size1"><span>350&nbsp;x&nbsp;250</span><input type="radio" data-width="350" data-height="250" /></label>
-		<label class="size2"><span>640&nbsp;x&nbsp;360</span><input type="radio" data-width="640" data-height="360" /></label>
-		<label class="size3"><span>700&nbsp;x&nbsp;480</span><input type="radio" data-width="700" data-height="480" /></label>
+		<label class="size1"><span>350&nbsp;x&nbsp;250</span><input name="size" type="radio" data-width="350" data-height="250" /></label>
+		<label class="size2"><span>640&nbsp;x&nbsp;360</span><input name="size" type="radio" data-width="640" data-height="360" /></label>
+		<label class="size3"><span>700&nbsp;x&nbsp;480</span><input name="size" type="radio" data-width="700" data-height="480" /></label>
 	</div>
 	<br />
-	<textarea cols="34" rows="5"></textarea>
+	<div id="tiles">
+		<label class="tile1"><span>OSM</span><input name="tile" type="radio" value="OSM" /></label>
+		<label class="tile2"><span>Paths</span><input name="tile" type="radio" value="Paths" /></label>
+		<label class="tile3"><span>Gray</span><input name="tile" type="radio" value="Gray" /></label>
+		<label class="tile4"><span>Sat</span><input name="tile" type="radio" value="Satellite" /></label>
+		<label class="tile5"><span>Terrain</span><input name="tile" type="radio" value="Terrain" /></label>
+		<label class="tile6"><span>Print</span><input name="tile" type="radio" value="Print" /></label>
+	</div>
+	<br />
+	<textarea cols="41" rows="5"></textarea>
+	<br />
+	<input id="iframeurl" type="text" valud="" size="42" />	
 </div>
 
 <iframe src="./?gpxs/chia.fosso.gpx" frameborder="0" width="350" height="250"></iframe>
+
+<a href="https://github.com/stefanocudini/share-tracks"><img id="ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 <script src="/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(function() {
 
-	var iframeSizes = {w:350, h:250};
+	var iframeOpts = {w: 350, h: 250, lay: 'OSM'};
 
 	$("#sizes :radio").on('click', function(e) {
-        var selected = $(this);
-        selected.parent().addClass("selected-size").siblings().removeClass("selected-size");
-        iframeSizes.w = selected.data("width");
-        iframeSizes.h = selected.data("height");
-        createIframe();
-    });
+		var selected = $(this);
+		selected.parent().addClass("selected").siblings().removeClass("selected");
+		iframeOpts.w = selected.data("width");
+		iframeOpts.h = selected.data("height");
+		createIframe();
+	});
+
+	$("#tiles :radio").on('click', function(e) {
+		var selected = $(this);
+		selected.parent().addClass("selected").siblings().removeClass("selected");
+		iframeOpts.lay = selected.val();
+		createIframe();
+	});	
 
 	$('#gpxfile').on('change', createIframe);
 
@@ -90,23 +115,27 @@ $(function() {
 	});
 
 function createIframe() {
-	var w = iframeSizes.w,
-		h = iframeSizes.h;
-		z = 16,
+	var w = iframeOpts.w,
+		h = iframeOpts.h;
+		/*z = 16,
 		lat = 42.466865,
-		lon = 12.26337,
-		lay = 'OSM',
+		lon = 12.26337,*/
+		lay = iframeOpts.lay,
 		file = $('#gpxfile').val(),
-		params = 'index.php?'+file,//+'#zoom='+z+'&lat='+lat+'&lon='+lon+'&layer='+lay,
+		params = 'index.php?'+file,//+'#layer='+lay, only layer parameter don't work in L.Permalink
 		url = window.location.protocol+'//'+window.location.host+'/'+window.location.pathname,
 		url = url.substring(0, url.lastIndexOf('/') + 1) + params,
 		iframeHtml = '<iframe frameborder="0" width="'+ w +'" height="'+ h +'" src="'+ url +'"></iframe>';
 
-	$("textarea").text(iframeHtml);
-	$('iframe').replaceWith($(iframeHtml));
+	console.log(url);
+
+	$('#iframeurl').val(url);
+	$('textarea').text( iframeHtml );
+	$('iframe').replaceWith( $(iframeHtml) );
 }
 
 });
 </script>
+<script src="/labs-common.js"></script>
 </body>
 </html>

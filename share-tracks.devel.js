@@ -64,6 +64,8 @@ var controlLayers = new L.Control.Layers(baseLayers, overLayers, {position:'topr
 
 var controlPermalink = new L.Control.Permalink({text: 'Permalink', layers: controlLayers});
 
+//window.controlPermalink = controlPermalink; //for debug from embed.php
+
 var controlFitZoom = (function() {
 		var control = new L.Control({position:'topleft'});
 		control._zoomGpx = function(gpxline) {
