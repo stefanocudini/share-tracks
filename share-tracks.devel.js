@@ -33,7 +33,7 @@ L.DomUtil.selectText = function() {
 	}
 };
 
-var map = new L.Map('map', {zoom:10, center: [0,0], attributionControl: false}),
+var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributionControl: false}),
 	osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
 	cycleLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'),
 	demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
@@ -105,6 +105,16 @@ var controlElevation = new L.Control.Elevation({
 	collapsed: true
 });
 
+var controlMenu = L.control.attribution({prefix:
+		'<ul class="mapmenu">'+
+			'<li><a href="#">Home Site</a></li>'+
+			'<li><a href="#">Section</a></li>'+
+			'<li><a href="#">Contacts</a></li>'+
+		'</ul>',
+		position:'topleft'});
+
+map.addControl(controlMenu);
+map.addControl(L.control.zoom());
 map.addControl(controlFitZoom);
 map.addControl(controlDownload);
 map.addControl(controlLayers);

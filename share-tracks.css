@@ -73,15 +73,19 @@ a span {
 	width:40%;
 }
 
+.leaflet-container .leaflet-control-attribution {
+	margin: 0;
+}
 .leaflet-popup-content-wrapper {
 	border-radius:.5em;	
 }
-.leaflet-control-permalink {
+.leaflet-control-attribution.leaflet-control-permalink {
 	border-radius: 6px;
 	padding: 0;
 	min-width: 26px;
 	width: auto;
 	height: 26px;
+	margin: 10px;
 }
 .leaflet-control-permalink a {
 	display: inline-block;
@@ -102,8 +106,15 @@ a span {
 .leaflet-control.elevation .background {
 	opacity: 0.8;
 }
-.leaflet-container .leaflet-control-attribution {
-	margin: 10px;
+.leaflet-control .mapmenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.leaflet-control .mapmenu li {
+	font-size: 18px;
+	float: left;
+	margin-left: 10px;
 }
 
 #copy {
@@ -132,8 +143,6 @@ a span {
 	top: 0;
 	right: 0;
 	border: 0;
-	filter: alpha(opacity=80);
-	-khtml-opacity: .8;
 	-moz-opacity: .8;
 	opacity: .8;		
 }

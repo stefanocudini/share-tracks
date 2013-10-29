@@ -26,8 +26,9 @@ iframe {
 	cursor: pointer;
 }
 #sizes input,
-#tiles input { visibility: hidden;margin-left: -18px}
-#sizes label.selected {
+#tiles input { visibility: hidden; margin-left: -18px}
+#sizes label.selected,
+#tiles label.selected {
 	border-color: #d00;
 	color: #d00;
 }
