@@ -2,18 +2,6 @@
 
 var gpxfile = L.UrlUtil.query();//defined in leaflet-plugins/control/Permalink.js
 
-if(gpxfile=='')
-{
-	L.DomUtil.get('map_wrap').style.display = 'none';
-	L.DomUtil.get('tracklist').style.display = 'block';
-	return false;
-}
-else
-{
-	L.DomUtil.get('map_wrap').style.display = 'block';
-	L.DomUtil.get('tracklist').style.display = 'none';
-}
-
 L.DomUtil.selectText = function() {
 	var start = 0,
 		end = this.value.length;
@@ -40,6 +28,7 @@ var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributi
 	bwLayer = new L.TileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
 	grayLayer = new L.TileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
 	satLayer = new L.Google(),
+	//bingLayer = new L.BingLayer(APIKEY),//http://www.microsoft.com/maps/create-a-bing-maps-key.aspx
 	gpxLayer = new L.GPX(gpxfile, {
 		async: true,
 		marker_options: {
