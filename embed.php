@@ -69,7 +69,7 @@ iframe {
 	<input id="iframeurl" type="text" valud="" size="42" />	
 </div>
 
-<iframe src="./?gpxs/chia.fosso.gpx" frameborder="0" width="350" height="250"></iframe>
+<iframe src="map.html?gpxs/chia.fosso.gpx" frameborder="0" width="350" height="250"></iframe>
 
 <a href="https://github.com/stefanocudini/share-tracks"><img id="ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
@@ -123,7 +123,7 @@ function createIframe() {
 		lon = 12.26337,*/
 		lay = iframeOpts.lay,
 		file = $('#gpxfile').val(),
-		params = 'index.php?'+file,//+'#layer='+lay, only layer parameter don't work in L.Permalink
+		params = 'map.html?'+file,//+'#layer='+lay, only layer parameter don't work in L.Permalink
 		url = window.location.protocol+'//'+window.location.host+'/'+window.location.pathname,
 		url = url.substring(0, url.lastIndexOf('/') + 1) + params,
 		iframeHtml = '<iframe frameborder="0" width="'+ w +'" height="'+ h +'" src="'+ url +'"></iframe>';
