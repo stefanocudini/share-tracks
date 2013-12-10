@@ -37,7 +37,7 @@ a span {
 }
 .gpxzoom,
 .gpxdown,
-.leaflet-control-permalink {
+.leaflet-control-attribution.leaflet-control-permalink {
 	cursor: pointer;
 	display:inline-block;
 	vertical-align:middle;
@@ -64,9 +64,6 @@ a span {
 .gpxdown {
 	background-position:-22px 3px;
 }
-.leaflet-control-permalink {
-	background-position: -46px 3px;
-}
 .textshare {	
 	border: 1px solid #bbb;
 	border-radius: 4px;
@@ -80,6 +77,7 @@ a span {
 	border-radius:.5em;	
 }
 .leaflet-control-attribution.leaflet-control-permalink {
+	background-position: -46px 3px;	
 	border-radius: 6px;
 	padding: 0;
 	min-width: 26px;
@@ -88,9 +86,11 @@ a span {
 	margin: 10px;
 }
 .leaflet-control-permalink a {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
+	display: block;
+	float: left;
+	overflow: hidden;
+	width: 26px;
+	height: 26px;
 	visibility: hidden;
 }
 .leaflet-control-permalink input {
@@ -98,10 +98,6 @@ a span {
 	float: right;
 	margin: 3px 4px;
 	width: 200px;
-}
-.leaflet-control-permalink {
-	font-size: 1.2em;
-	letter-spacing: 2px;
 }
 .leaflet-control.elevation .background {
 	opacity: 0.8;

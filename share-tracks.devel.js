@@ -94,13 +94,15 @@ var controlElevation = new L.Control.Elevation({
 	collapsed: true
 });
 
-var controlMenu = L.control.attribution({prefix:
-		'<ul class="mapmenu">'+
-			'<li><a href="#">Home Site</a></li>'+
-			'<li><a href="#">Section</a></li>'+
-			'<li><a href="#">Contacts</a></li>'+
-		'</ul>',
-		position:'topleft'});
+var controlMenu = L.control.attribution({
+		position: 'topleft',
+		prefix:
+			'<ul class="mapmenu">'+
+				'<li><a href="#">Home Site</a></li>'+
+				'<li><a href="#">Section</a></li>'+
+				'<li><a href="#">Contacts</a></li>'+
+			'</ul>'
+		});
 
 map.addControl(controlMenu);
 map.addControl(L.control.zoom());
