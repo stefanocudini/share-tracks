@@ -22,6 +22,14 @@
 		echo '<a href="map.html?'.$f.'">'.basename($f).'</a><br />'."\n";
 
 	?>
+	<p>
+		<h4>Features</h4>
+		<ul>
+			<li>Support Mobile Devices:<br />
+			<img src="images/mobile-map.png" />
+			</li>
+		</ul>
+	</p>
 	<div id="copy">
 		<a href="http://labs.easyblog.it/">Labs</a> &bull; <a href="http://labs.easyblog.it/stefano-cudini/">Stefano Cudini</a>
 	</div>

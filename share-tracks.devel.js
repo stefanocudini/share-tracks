@@ -98,7 +98,7 @@ var controlMenu = L.control.attribution({
 		position: 'topleft',
 		prefix:
 			'<ul class="mapmenu">'+
-				'<li><a href="#">Home Site</a></li>'+
+				'<li><a href="./">Home Site</a></li>'+
 				'<li><a href="#">Section</a></li>'+
 				'<li><a href="#">Contacts</a></li>'+
 			'</ul>'

@@ -17,6 +17,9 @@ h1 {
 	margin:0;
 	padding:0;
 }
+h4,ul {
+	margin: .25em;
+}
 #tracklist {
 	padding:10px;
 }
