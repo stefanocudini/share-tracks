@@ -9,27 +9,27 @@
 
 <body>
 <div id="tracklist">
-	<h1>SHARE GPX TRACKS</h1><br /><br />
-	<div style="display:inline-block">
-		<iframe src="http://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
-	</div>
-	<hr />
-	<a href="embed.php">Maps Embedder</a>
-	<hr />
-	<?php
-
-	foreach(glob('./gpxs/*.gpx') as $f)
-		echo '<a href="map.html?'.$f.'">'.basename($f).'</a><br />'."\n";
-
-	?>
+	<h1>SHARE GPX TRACKS</h1>
 	<p>
-		<h4>Features</h4>
-		<ul>
-			<li>Support Mobile Devices:<br />
-			<img src="images/mobile-map.png" />
-			</li>
-		</ul>
+		The simple way to share your paths in the rest of the web.<br />
+		<iframe src="http://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
+		<br />
+		Other useful stuff for <a href="http://labs.easyblog.it/maps/">Web Mapping...</a>		
 	</p>
+	<h4>Tracks Samples</h4>
+	<ul>
+	<?php foreach(glob('./gpxs/*.gpx') as $f): ?>
+		<li><a href="map.html?<?=$f?>"><?=basename($f)?></a></li>
+	<?php endforeach; ?>
+	</ul>
+	<br />	
+	<h4>Features</h4>
+	<ul>
+		<li><a href="embed.php">Maps Embedder</a></li>
+		<li>Support Mobile Devices:<br />
+		<img src="images/mobile-map.png" />
+		</li>
+	</ul>
 	<div id="copy">
 		<a href="http://labs.easyblog.it/">Labs</a> &bull; <a href="http://labs.easyblog.it/stefano-cudini/">Stefano Cudini</a>
 	</div>
