@@ -140,6 +140,7 @@ gpxLayer
 	.on("loaded", function(e) {
 		if( L.UrlUtil.hash() == '')
 			controlFitZoom._zoomGpx(e.target);
+		controlPermalink._text.value = controlPermalink._href.href;
 	})
 	.on("addline",function(e) {
 		controlElevation.addData(e.line);
