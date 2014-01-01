@@ -1,10 +1,10 @@
-SHARE GPX TRACKS
+SHARE TRACKS
 ============
 
 What
 ------
 
-Share GPX tracks, using Leaflet
+Embed and Share GPX tracks, using Leaflet
 
 Tested in Leaflet 0.6.4
 
@@ -15,7 +15,17 @@ Source code:
 
 https://github.com/stefanocudini/share-tracks
 
-Demos:
+Demo:
 
 http://labs.easyblog.it/maps/share-tracks/
 
+
+Included Libraries
+------
+
+Writing this web app would be much harder it it weren't for those libraries:
+
+* [Leaflet](https://github.com/Leaflet/Leaflet)
+* [Leaflet.Elevation](https://github.com/MrMufflon/Leaflet.Elevation)
+* [Leaflet-GPX](https://github.com/mpetazzoni/leaflet-gpx)
+* [Leaflet-plugins](https://github.com/shramov/leaflet-plugins)

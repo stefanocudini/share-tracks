@@ -98,9 +98,8 @@ var controlMenu = L.control.attribution({
 		position: 'topleft',
 		prefix:
 			'<ul class="mapmenu">'+
-				'<li><a href="./">Home Site</a></li>'+
-				'<li><a href="#">Section</a></li>'+
-				'<li><a href="#">Contacts</a></li>'+
+				'<li><a target="_parent" href="./">Home Site</a></li>'+
+				'<li><a href="http://labs.easyblog.it/maps/">Credits</a></li>'+
 			'</ul>'
 		});
 
