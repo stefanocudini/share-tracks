@@ -27,6 +27,8 @@ var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributi
 	demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
 	bwLayer = new L.TileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
 	grayLayer = new L.TileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
+	landLayer = new L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png'),
+	outLayer = new L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'),	
 	satLayer = new L.Google(),
 	//bingLayer = new L.BingLayer(APIKEY),//http://www.microsoft.com/maps/create-a-bing-maps-key.aspx
 	gpxLayer = new L.GPX(gpxfile, {
@@ -39,9 +41,9 @@ var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributi
 	}),
 	baseLayers = {
 		"OSM": osmLayer,
-		"Paths": cycleLayer,
+		"Paths": outLayer,
 		"Gray": grayLayer,
-		"Satellite": satLayer,		
+		"Satellite": satLayer,
 		"Terrain": demLayer,
 		"Print": bwLayer	
 	},
@@ -99,7 +101,7 @@ var controlMenu = L.control.attribution({
 		prefix:
 			'<ul class="mapmenu">'+
 				'<li><a target="_parent" href="./">Home Site</a></li>'+
-				'<li><a href="http://labs.easyblog.it/maps/">Credits</a></li>'+
+				'<li><a target="_parent" href="http://labs.easyblog.it/maps/">Credits</a></li>'+
 			'</ul>'
 		});
 
@@ -147,5 +149,6 @@ gpxLayer
 
 map.addLayer(osmLayer);
 map.addLayer(gpxLayer);
+
 
 })();
