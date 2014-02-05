@@ -8,6 +8,11 @@ Embed and Share GPX tracks, using Leaflet
 
 Tested in Leaflet 0.6.4
 
+Screenshots
+------
+
+![mobile display](https://raw2.github.com/stefanocudini/share-tracks/master/images/mobile-map.png)
+
 Where
 ------
 
