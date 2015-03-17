@@ -1,0 +1,24 @@
+{
+  "name": "share-tracks",
+  "version": "0.0.0",
+  "description": "Share and Embedding GPX tracks online",
+  "main": "share-tracks.devel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stefanocudini/share-tracks.git"
+  },
+  "keywords": [
+    "leaflet",
+    "gpx",
+    "maps"
+  ],
+  "author": "Stefano Cudini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stefanocudini/share-tracks/issues"
+  },
+  "homepage": "https://github.com/stefanocudini/share-tracks"
+}
