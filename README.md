@@ -41,6 +41,7 @@ https://github.com/stefanocudini/share-tracks
 
 http://labs.easyblog.it/maps/share-tracks/
 
+http://www.ammappalitalia.it/
 
 Included Libraries
 ------
