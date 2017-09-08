@@ -13,6 +13,8 @@ Screenshots
 
 ![mobile display](https://raw.github.com/stefanocudini/share-tracks/master/images/mobile-map.png)
 
+![embedded maps](https://raw.github.com/stefanocudini/share-tracks/master/images/embed-map.png)
+
 Features
 ------
 
