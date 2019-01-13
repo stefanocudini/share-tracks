@@ -24,7 +24,7 @@ L.DomUtil.selectText = function() {
 var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributionControl: false}),
 	osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
 	cycleLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'),
-	demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
+	//demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
 	bwLayer = new L.TileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
 	grayLayer = new L.TileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
 	landLayer = new L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png'),
@@ -44,7 +44,7 @@ var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributi
 		"Paths": outLayer,
 		"Gray": grayLayer,
 		"Satellite": satLayer,
-		"Terrain": demLayer,
+		//"Terrain": demLayer,
 		"Print": bwLayer	
 	},
 	overLayers = {
