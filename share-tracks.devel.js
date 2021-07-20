@@ -22,15 +22,15 @@ L.DomUtil.selectText = function() {
 };
 
 var map = new L.Map('map', {zoom:10, center: [0,0], zoomControl:false, attributionControl: false}),
-	osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
-	cycleLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'),
-	//demLayer = new L.TileLayer('http://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
-	bwLayer = new L.TileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
-	grayLayer = new L.TileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
-	landLayer = new L.tileLayer('http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png'),
-	outLayer = new L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'),	
+	osmLayer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+	cycleLayer = new L.TileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'),
+	//demLayer = new L.TileLayer('https://toolserver.org/~cmarqu/hill/{z}/{x}/{y}.png'),
+	bwLayer = new L.TileLayer('https://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png'),
+	grayLayer = new L.TileLayer('https://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png'),
+	landLayer = new L.tileLayer('https://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png'),
+	outLayer = new L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'),	
 	satLayer = new L.Google(),
-	//bingLayer = new L.BingLayer(APIKEY),//http://www.microsoft.com/maps/create-a-bing-maps-key.aspx
+	//bingLayer = new L.BingLayer(APIKEY),//https://www.microsoft.com/maps/create-a-bing-maps-key.aspx
 	gpxLayer = new L.GPX(gpxfile, {
 		async: true,
 		marker_options: {
@@ -101,7 +101,7 @@ var controlMenu = L.control.attribution({
 		prefix:
 			'<ul class="mapmenu">'+
 				'<li><a target="_parent" href="./">Home Site</a></li>'+
-				'<li><a target="_parent" href="http://labs.easyblog.it/maps/">Credits</a></li>'+
+				'<li><a target="_parent" href="https://opengeo.tech/maps/">Credits</a></li>'+
 			'</ul>'
 		});
 

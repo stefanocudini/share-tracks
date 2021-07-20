@@ -41,9 +41,9 @@ https://github.com/stefanocudini/share-tracks
 
 **Demo:**
 
-http://labs.easyblog.it/maps/share-tracks/
+https://opengeo.tech/maps/share-tracks/
 
-http://www.ammappalitalia.it/
+https://www.ammappalitalia.it/
 
 Included Libraries
 ------
