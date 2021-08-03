@@ -1,6 +1,6 @@
 {
   "name": "share-tracks",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Share and Embedding GPX tracks online",
   "main": "share-tracks.devel.js",
   "scripts": {
