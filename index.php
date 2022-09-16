@@ -31,7 +31,7 @@
 		</li>
 	</ul>
 	<div id="copy">
-		<a href="https://opengeo.tech/">Labs</a> &bull; <a rel="author" href="https://opengeo.tech/stefano-cudini/">Stefano Cudini</a>
+		<a href="https://opengeo.tech/">Opengeo.tech</a> &bull; <a rel="author" href="https://opengeo.tech/stefano-cudini/">Stefano Cudini</a>
 	</div>
 	<a href="https://github.com/stefanocudini/share-tracks"><img id="ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 </div>
