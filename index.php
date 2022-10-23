@@ -14,15 +14,12 @@
 		The simple way to share your paths in the rest of the web.<br />
 		<iframe src="https://ghbtns.com/github-btn.html?user=stefanocudini&amp;repo=share-tracks&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="104px" height="20px"></iframe>
 		<br />
-		Other useful stuff for <a href="https://opengeo.tech/maps/">Web Mapping...</a>		
+		Other useful stuff for <a href="https://opengeo.tech/maps/">Web Mapping...</a>
 	</p>
-	<h4>Tracks Samples</h4>
-	<ul>
-	<?php foreach(glob('./gpxs/*.gpx') as $f): ?>
-		<li><a href="map.html?<?=$f?>"><?=basename($f)?></a></li>
-	<?php endforeach; ?>
+	<button id="load" href="#">Load Tracks</button>
+	<ul id="gpxs">
 	</ul>
-	<br />	
+	<br />
 	<h4>Features</h4>
 	<ul>
 		<li><a href="embed.php">Maps Embedder</a></li>
@@ -35,6 +32,13 @@
 	</div>
 	<a href="https://github.com/stefanocudini/share-tracks"><img id="ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 </div>
+<script src="/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$('#load').on('click',function() {
+
+ 	$('#gpxs').load('./gpxs.php')
+});
+</script>
 <script src="/labs-common.js"></script>
 </body>
 </html>
