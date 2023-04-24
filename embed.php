@@ -137,6 +137,5 @@ function createIframe() {
 
 });
 </script>
-<script src="/labs-common.js"></script>
 </body>
 </html>
