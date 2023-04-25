@@ -71,7 +71,7 @@ iframe {
 
 <iframe src="map.html?gpxs/chia.fosso.gpx" frameborder="0" width="350" height="250"></iframe>
 
-<a href="https://github.com/stefanocudini/share-tracks">Github</a>
+<a href="https://github.com/stefanocudini/share-tracks" class="github-fork-ribbon">Github</a>
 
 <script src="//unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <script type="text/javascript">
