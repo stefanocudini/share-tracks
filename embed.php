@@ -37,7 +37,7 @@ iframe {
 #sizes .size3 { width: 130px; height:90px; }
 
 </style>
-</head>
+<link rel="stylesheet" href="//unpkg.com/github-fork-ribbon-css@0.2.3/gh-fork-ribbon.css"></head>
 
 <body>
 <div id="content">
@@ -71,7 +71,7 @@ iframe {
 
 <iframe src="map.html?gpxs/chia.fosso.gpx" frameborder="0" width="350" height="250"></iframe>
 
-<a href="https://github.com/stefanocudini/share-tracks" class="github-fork-ribbon">Github</a>
+<a href="https://github.com/stefanocudini/share-tracks" class="github-fork-ribbon" data-ribbon="Fork me on GitHub">Github</a>
 
 <script src="//unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
 <script type="text/javascript">
