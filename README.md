@@ -11,13 +11,16 @@ Usage
 
 1) upload the folder of this project in your server having PHP installed.
 2) add new gpx files in `./gpxs/` folder and browse the page `share-tracks/index.html`
+3) like the [demo page](https://opengeo.tech/maps/share-tracks/) select the track in *Map Embedder* see below.
 
 Screenshots
 ------
+Map Embedder tool:
+![embedded maps](https://raw.github.com/stefanocudini/share-tracks/master/images/embed-map.png)
 
+share page in Mobile device:
 ![mobile display](https://raw.github.com/stefanocudini/share-tracks/master/images/mobile-map.png)
 
-![embedded maps](https://raw.github.com/stefanocudini/share-tracks/master/images/embed-map.png)
 
 Features
 ------
