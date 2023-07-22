@@ -16,9 +16,11 @@ Usage
 Screenshots
 ------
 Map Embedder tool:
+
 ![embedded maps](https://raw.github.com/stefanocudini/share-tracks/master/images/embed-map.png)
 
 share page in Mobile device:
+
 ![mobile display](https://raw.github.com/stefanocudini/share-tracks/master/images/mobile-map.png)
 
 
