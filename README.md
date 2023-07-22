@@ -6,7 +6,11 @@ What
 
 Embed and Share GPX tracks, using Leaflet
 
-Tested in Leaflet 0.6.4
+Usage
+------
+
+1) upload the folder of this project in your server having PHP installed.
+2) add new gpx files in `./gpxs/` folder and browse the page `share-tracks/index.html`
 
 Screenshots
 ------
